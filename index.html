@@ -26,8 +26,8 @@
                 <a class="nav-item nav-link ml-auto link" href="#" style=" margin-right:10px;font-size:18px;color:#d3d3d3">Parking Slots -></a>
                 <a class="nav-item nav-link ml-auto link" href="#" style=" margin-right:10px;font-size:18px;color:#d3d3d3">Account details</a>
                 <a class="nav-item nav-link ml-auto link" href="#" style=" margin-right:10px;font-size:18px;color:#d3d3d3">Customer Support</a>
-                <a class="nav-item nav-link ml-auto link" href="#" ><button style="border:0px solid ;background-color:#07374a;width:90px;height:35px;color:#008080;">Sign up</button></a>
-                <a class="nav-item nav-link ml-auto link" href="#"><button style="border:0px solid ;background-color:#07374a;width:90px;height:35px;color:#008080;">Log in</button></a>
+                <a class="nav-item nav-link ml-auto link" target="_blank" href="signup.html" ><button style="border:0px solid ;background-color:#07374a;width:90px;height:35px;color:#008080;">Sign up</button></a>
+                <a class="nav-item nav-link ml-auto link" target="_blank" href="login.html"><button style="border:0px solid ;background-color:#07374a;width:90px;height:35px;color:#008080;">Log in</button></a>
               </div>
             </div>
           </nav>
@@ -40,7 +40,7 @@
           <div id="carouselExampleControls" class="carousel slide mt-2" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">   
-                    <img class="d-block w-100" src="new-york-1745089_1920.jpg" alt="First slide" style="height:420px;">
+                    <img class="d-block w-100" src="PicsArt_10-16-06.59.57.jpeg" alt="First slide" style="height:420px;">
                     <div class="carousel-caption d-md-block" >
                         <h1>Welcome to Hack</h1>
                         <p>the Smart Parking System</p>
@@ -69,8 +69,8 @@
                           
             
 <div class="row">
-  <div class="col-lg-8" style="background-color:#f3f3f3;height:600px;padding-bottom:40px;margin-bottom:40px;">
-  <object data="map.jpg" style="height:100%;width:100%;"></object>
+  <div class="col-lg-8" id="map" style="background-color:#f3f3f3;height:600px;padding-bottom:40px;margin-bottom:40px;">
+  
   </div>
   <div class="col-lg-4" style="background-color:#d3d3d3;height:auto;padding:40px;margin-bottom:40px;">
   <h2>All details </h2>
@@ -129,7 +129,52 @@
 
 
 
+<script>
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  
+  var map;
+  var service;
+  var infowindow;
 
+  function initMap() {
+    var sydney = new google.maps.LatLng(-33.867, 151.195);
+
+    infowindow = new google.maps.InfoWindow();
+
+    map = new google.maps.Map(
+        document.getElementById('map'), {center: sydney, zoom: 15});
+
+    var request = {
+      query: 'Museum of Contemporary Art Australia',
+      fields: ['name', 'geometry'],
+    };
+
+    service = new google.maps.places.PlacesService(map);
+
+    service.findPlaceFromQuery(request, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          createMarker(results[i]);
+        }
+
+        map.setCenter(results[0].geometry.location);
+      }
+    });
+  }
+
+  function createMarker(place) {
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+    });
+  }
+</script>
 
 
 
@@ -137,7 +182,7 @@
 
 
       <!-- Compiled and minified JavaScript -->
-    
+    <script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initMap" async defer></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

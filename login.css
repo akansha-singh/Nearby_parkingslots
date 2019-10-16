@@ -1,0 +1,30 @@
+@media (min-width:1000px) {
+    #cardid{
+    margin-top:90px;
+
+    }
+  }
+
+  @media (max-width:1000px) {
+    #cardid{
+    margin-top:50px;
+
+    }
+  }
+
+  @media (max-width:1000px) {
+    #cardid{
+       height:290px;
+    }
+  }
+
+  @media (min-width:1000px) {
+    #cardid{
+       height:300px;
+    }
+  }
+
+  body{
+    background-image: url{"Untitled-1.png"};
+  }
+ 
