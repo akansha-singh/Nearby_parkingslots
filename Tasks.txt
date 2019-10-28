@@ -1,0 +1,4 @@
+Tasks to be done:
+1)Create database of existing parking slots.
+2)Apply ML on filling the future bookings.
+3)Complete login and signup page.
